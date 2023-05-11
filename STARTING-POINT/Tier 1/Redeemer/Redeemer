@@ -1,0 +1,9 @@
+# Nmap 7.92 scan initiated Fri May  5 20:54:25 2023 as: nmap -p- -sC -sY --open -sS -n -oN Redeemer 10.129.153.117
+Nmap scan report for 10.129.153.117
+Host is up (0.056s latency).
+Not shown: 65339 filtered sctp ports (no-response), 242 filtered tcp ports (no-response), 196 filtered sctp ports (proto-unreach), 65292 closed tcp ports (reset)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE
+6379/tcp open  redis
+
+# Nmap done at Fri May  5 20:58:15 2023 -- 1 IP address (1 host up) scanned in 229.58 seconds

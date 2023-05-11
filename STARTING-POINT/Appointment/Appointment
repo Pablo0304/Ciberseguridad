@@ -1,0 +1,10 @@
+# Nmap 7.93 scan initiated Tue May  9 09:18:26 2023 as: nmap -p- -sC -sY --open -sS -n -oN Appointment 10.129.4.211
+Nmap scan report for 10.129.4.211
+Host is up (0.048s latency).
+Not shown: 65380 filtered sctp ports (no-response), 155 filtered sctp ports (proto-unreach), 65534 closed tcp ports (reset)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-title: Login
+
+# Nmap done at Tue May  9 09:21:20 2023 -- 1 IP address (1 host up) scanned in 173.92 seconds

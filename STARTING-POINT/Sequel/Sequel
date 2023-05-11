@@ -1,0 +1,37 @@
+# Nmap 7.93 scan initiated Tue May  9 11:32:00 2023 as: nmap -p- -A -sC -sY -sV --open -sS -n -oN Sequel 10.129.95.232
+Nmap scan report for 10.129.95.232
+Host is up (0.046s latency).
+Not shown: 65355 filtered sctp ports (no-response), 180 filtered sctp ports (proto-unreach), 65534 closed tcp ports (reset)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE VERSION
+3306/tcp open  mysql?
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.5-10.3.27-MariaDB-0+deb10u1
+|   Thread ID: 65
+|   Capabilities flags: 63486
+|   Some Capabilities: Support41Auth, InteractiveClient, SupportsLoadDataLocal, LongColumnFlag, IgnoreSigpipes, ODBCClient, IgnoreSpaceBeforeParenthesis, Speaks41ProtocolNew, ConnectWithDatabase, SupportsCompression, Speaks41ProtocolOld, DontAllowDatabaseTableColumn, SupportsTransactions, FoundRows, SupportsMultipleStatments, SupportsMultipleResults, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: :<]Bm$cL0KgHnqkIfIx@
+|_  Auth Plugin Name: mysql_native_password
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.93%E=4%D=5/9%OT=3306%CT=1%CU=38837%PV=Y%DS=2%DC=T%G=Y%TM=645A69
+OS:07%P=x86_64-pc-linux-gnu)SEQ(SP=FC%GCD=1%ISR=10D%TI=Z%CI=Z%II=I%TS=A)OPS
+OS:(O1=M53CST11NW7%O2=M53CST11NW7%O3=M53CNNT11NW7%O4=M53CST11NW7%O5=M53CST1
+OS:1NW7%O6=M53CST11)WIN(W1=FE88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)ECN
+OS:(R=Y%DF=Y%T=40%W=FAF0%O=M53CNNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=A
+OS:S%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R
+OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F
+OS:=R%O=%RD=0%Q=)T7(R=N)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%
+OS:RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 2 hops
+
+TRACEROUTE (using port 3306/tcp)
+HOP RTT      ADDRESS
+1   46.38 ms 10.10.14.1
+2   46.54 ms 10.129.95.232
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue May  9 11:38:47 2023 -- 1 IP address (1 host up) scanned in 407.38 seconds

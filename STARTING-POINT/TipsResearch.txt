@@ -1,0 +1,33 @@
+FORMAS DE CONECTARSE A UNA MÁQUINA:
+-telnet <IP>                   // Anterior a "ssh".
+-ftp <IP>                      // Intercambio de ficheros.
+-smbclient \\\\<IP>\\<dir>\\   // Conexión shell al directorio,
+                               // "smbclient -L <IP>" da info de los directorios.
+-redis-cli -h 10.129.153.117   // Servicio de base de datos "redis".
+                               // Luego "config get *", "keys *", y "GET key"(o el nombre que tenga),
+                               // en nuestro caso debería ser la flag(Máquina Redeemer). 
+
+
+SO:
+-sudo nmap -sV <IP>
+
+FTP:
+Upload a file to the FTP server: put.
+Download a file to the FTP server: get.
+Hay muchos más... (con "?" salen ejemplos)
+
+SMB (COMANDOS):
+ls             dir            lcd            cd             pwd            
+get            mget           put            mput           rename         
+more           mask           del            rm             mkdir          
+md             rmdir          rd             prompt         recurse        
+translate      lowercase      print          printmode      queue          
+cancel         stat           quit           q              exit           
+newer          archive        tar            blocksize      tarmode        
+setmode        help           ?              !              
+
+COMANDOS INTERESANTES:
+(SMB)--->smbclient -L <IP>   // Listar los recursos compartidos disponibles en un servidor SMB/CIFS remoto.
+     |
+     --->get flag.txt        // Ejecutando el comando para tener la shell podemos descargar un fichero.
+

