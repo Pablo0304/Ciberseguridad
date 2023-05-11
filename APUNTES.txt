@@ -18,7 +18,7 @@ Subdirectorio por diccionario en la url.
 
 FUERZA BRUTA, IMPORTAR UN DICCIONARIO DE GITHUB:
 -wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/DNS/bitquark-subdomains-top100000.txt
-
+ 
 FUERZA BRUTA, PASSWORD:
 Con “hydra” se puede probar por fuerza bruta una password.
 
